@@ -1,6 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
+ const timer = document.getElementsByClassName('time');
 
 
 /*
@@ -25,6 +26,26 @@ function shuffle(array) {
     return array;
 }
 
+//timer function
+
+function gameTimer() {
+    time = setInterval(function() {
+
+        sec++;
+        if (sec < 10) {
+            sec = "0" + sec;
+        }
+        timer[0].innerHTML = min + ":" + sec;
+        timer[1].innerHTML = min + ":" + sec;
+
+        if (sec === 60) {
+            min++;
+            sec = 0;
+
+        }
+
+    }, 1000);
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
