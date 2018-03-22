@@ -7,6 +7,7 @@ const cards   = document.getElementsByClassName('card');
 const time    = document.getElementsByClassName('time')[0];
 const timeSummary = document.getElementsByClassName('time-summary')[0];
 const moves   = document.getElementsByClassName('moves')[0];
+const movesSummary = document.getElementsByClassName('moves-summary')[0];
 const restart = document.getElementsByClassName('restart')[0];
 const stars   = document.getElementsByClassName('stars')[0].children;
 const summaryStars = document.getElementsByClassName('summary-stars')[0].children;
@@ -101,7 +102,7 @@ const cardClick = function( event ) {
 }
 
 const checkIfWon = function() {
-  if( matched !== 1 ) {
+  if( matched !== 2 ) {
     return;
   }
   clearInterval( timer );
@@ -117,6 +118,7 @@ const checkIfWon = function() {
     summaryStars[0].classList.add( "hide-star" );
   }
   timeSummary.textContent = getFormatedTime();
+  movesSummary.textContent = movesCounter;
 }
 
 const updateMovesCounter = function() {
