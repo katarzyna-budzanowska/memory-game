@@ -3,9 +3,13 @@
  */
 const deck  = document.getElementsByClassName('deck')[0];
 const cards = Array.from( document.getElementsByClassName('card') );
-const timer = document.getElementsByClassName('time');
+const timer = document.getElementsByClassName('time')[0];
+const moves = document.getElementsByClassName('moves')[0];
 
+let timerStarted = false;
+let movesCounter = 0;
 let openCard = null;
+let seconds = 0;
 
 /*
  * Display the cards on the page
@@ -30,20 +34,13 @@ function shuffle(array) {
 }
 
 //timer function
-function gameTimer() {
-    time = setInterval(function() {
-
-        sec++;
-        if (sec < 10) {
-            sec = "0" + sec;
-        }
-        timer[0].innerHTML = min + ":" + sec;
-        timer[1].innerHTML = min + ":" + sec;
-
-        if (sec === 60) {
-            min++;
-            sec = 0;
-        }
+function startTimer() {
+    timerStarted = true;
+    time = setInterval( function() {
+        seconds++;
+        let sec = seconds % 60;
+        let min = (seconds - sec) / 60;
+        timer.textContent = min + ":" + ( sec < 10 ? '0' + sec : sec );
     }, 1000);
 }
 
@@ -58,11 +55,14 @@ const markAsMatched = function( card ) {
 
 // Card click event handler
 const cardClick = function( event ) {
+  if( ! timerStarted ) {
+    startTimer();
+  }
+  
   const target = event.target;
-  console.log( event.target );
-  console.log('card clicked!');
   target.classList.add("open", "show", "avoid-clicks");
   if( openCard ) {
+    updateMovesCounter();
     deck.classList.add( "avoid-clicks" );
     setTimeout( function() {
       if( openCard.isEqualNode( target ) ) {
@@ -80,6 +80,11 @@ const cardClick = function( event ) {
   }
 }
 
+const updateMovesCounter = function() {
+  movesCounter += 1;
+  moves.textContent = movesCounter;
+}
+
 // Cards setup, state reset, events
 const setupCards = function() {
     for (const card of cards) {
@@ -88,8 +93,16 @@ const setupCards = function() {
     }
 };
 
+// Zero time, move counts, stars
+const setupGameState = function() {
+  movesCounter = 0;
+  timerStarted = false;
+  seconds = 0;
+}
+
 // Main game function
 const game = function () {
+  setupGameState();
   setupCards();
 }
 
