@@ -111,9 +111,6 @@ const checkIfWon = function() {
   if (movesCounter >= 25) {
     summaryStars[1].classList.add("hide-star");
   }
-  if (movesCounter >= 35) {
-    summaryStars[0].classList.add("hide-star");
-  }
   timeSummary.textContent = getFormatedTime();
   movesSummary.textContent = movesCounter;
 }
@@ -130,8 +127,6 @@ const updateStars = function() {
     stars[2].classList.add("hide-star");
   } else if (movesCounter === 25) {
     stars[1].classList.add("hide-star");
-  } else if (movesCounter === 35) {
-    stars[0].classList.add("hide-star");
   }
 }
 
