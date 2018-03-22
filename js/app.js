@@ -153,6 +153,7 @@ const setupGameState = function() {
   timerStarted = false;
   seconds = 0;
   matched = 0;
+  openCard = null;
   moves.textContent = 0;
   time.textContent = "00:00";
   deck.classList.remove("hidden");
