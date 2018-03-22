@@ -1,8 +1,11 @@
 /*
  * Create a list that holds all of your cards
  */
+const deck  = document.getElementsByClassName('deck')[0];
 const cards = Array.from( document.getElementsByClassName('card') );
 const timer = document.getElementsByClassName('time');
+
+let openCard = null;
 
 /*
  * Display the cards on the page
@@ -44,17 +47,37 @@ function gameTimer() {
     }, 1000);
 }
 
+// Clear card state
+const resetCardState = function ( card ) {
+  card.classList.remove("show", "open", "match", "avoid-clicks");
+}
+
+const markAsMatched = function( card ) {
+  card.classList.add('match');
+}
+
 // Card click event handler
 const cardClick = function( event ) {
   const target = event.target;
   console.log( event.target );
   console.log('card clicked!');
   target.classList.add("open", "show", "avoid-clicks");
-}
-
-// Clear card state
-const resetCardState = function ( card ) {
-  card.classList.remove("show", "open", "match", "noclick");
+  if( openCard ) {
+    deck.classList.add( "avoid-clicks" );
+    setTimeout( function() {
+      if( openCard.isEqualNode( target ) ) {
+        markAsMatched( target );
+        markAsMatched( openCard );
+      } else {
+        resetCardState( target );
+        resetCardState( openCard );
+      }
+      openCard = null;
+      deck.classList.remove( "avoid-clicks" );
+    }, 1000 );
+  } else {
+    openCard = target;
+  }
 }
 
 // Cards setup, state reset, events
