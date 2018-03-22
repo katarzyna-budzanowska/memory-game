@@ -1,8 +1,8 @@
 /*
  * Create a list that holds all of your cards
  */
- const timer = document.getElementsByClassName('time');
-
+const cards = Array.from( document.getElementsByClassName('card') );
+const timer = document.getElementsByClassName('time');
 
 /*
  * Display the cards on the page
@@ -27,7 +27,6 @@ function shuffle(array) {
 }
 
 //timer function
-
 function gameTimer() {
     time = setInterval(function() {
 
@@ -41,11 +40,37 @@ function gameTimer() {
         if (sec === 60) {
             min++;
             sec = 0;
-
         }
-
     }, 1000);
 }
+
+// Card click event handler
+const cardClick = function( event ) {
+  const target = event.target;
+  console.log( event.target );
+  console.log('card clicked!');
+  target.classList.add("open", "show", "avoid-clicks");
+}
+
+// Clear card state
+const resetCardState = function ( card ) {
+  card.classList.remove("show", "open", "match", "noclick");
+}
+
+// Cards setup, state reset, events
+const setupCards = function() {
+    for (const card of cards) {
+        resetCardState( card );
+        card.addEventListener("click", cardClick);
+    }
+};
+
+// Main game function
+const game = function () {
+  setupCards();
+}
+
+window.addEventListener('load', game);
 
 /*
  * set up the event listener for a card. If a card is clicked:

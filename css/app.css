@@ -107,3 +107,7 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+.avoid-clicks {
+  pointer-events: none;
+}
