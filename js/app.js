@@ -102,16 +102,16 @@ const cardClick = function( event ) {
 }
 
 const checkIfWon = function() {
-  if( matched !== 2 ) {
+  if( matched !== 8 ) {
     return;
   }
   clearInterval( timer );
   deck.classList.add("hidden");
   congratulations.classList.remove("hidden");
-  if( movesCounter >= 1 ) {
+  if( movesCounter >= 15 ) {
     summaryStars[2].classList.add( "hide-star" );
   }
-  if ( movesCounter >= 1 ) {
+  if ( movesCounter >= 25 ) {
     summaryStars[1].classList.add( "hide-star" );
   }
   if ( movesCounter >= 35 ) {
