@@ -113,6 +113,13 @@ const setupCards = function() {
     }
 };
 
+const shuffleCards = function() {
+  const shuffledCards = shuffle( Array.from( cards ) );
+  shuffledCards.forEach( function( card ) {
+    deck.appendChild( card );
+  } )
+}
+
 // Zero time, move counts, stars
 const setupGameState = function() {
   clearInterval( timer );
@@ -126,12 +133,17 @@ const setupGameState = function() {
 
 // Main game function
 const game = function () {
-  setupGameState();
+  reset();
   setupCards();
 }
 
+const reset = function () {
+  setupGameState();
+  shuffleCards();
+}
+
 window.addEventListener('load', game);
-restart.addEventListener('click', game);
+restart.addEventListener('click', reset);
 
 /*
  * set up the event listener for a card. If a card is clicked:
