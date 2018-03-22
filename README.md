@@ -1,22 +1,15 @@
-# Memory Game Project
+# Memory Game
 
-## Table of Contents
+This is a matching game project made by Katarzyna Budzanowska for Udacity.
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+## How to start
 
-## Instructions
+Go to https://github.com/katarzyna-budzanowska/memory-game and open index.html file in your browser.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+## How To Play
+Click on a cards to find 8 pairs of identical symbols. Each time you can flip only 2 cards. If the cards match, they will change color but if they don't match, they will hide again.
 
-To get started, open `js/app.js` and start building out the app's functionality
+##### Score
+Remember, your time is running and moves are counted! Try to score 3 stars and finish the game in less than 15 moves. Between 15 and 24 moves you'll get 2 stars and between 25 and 34 moves you'll get 1 star. But if you'll have more than 34 moves, you won't get any star.
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## TODO
+Try it out and have fun!

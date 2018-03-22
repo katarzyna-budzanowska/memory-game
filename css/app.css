@@ -156,6 +156,10 @@ h1 {
   pointer-events: none;
 }
 
+/*
+ * Match - shake effect
+ */
+
 @keyframes shake {
   10%, 90% {
     transform: translate3d(-1px, 0, 0);
@@ -171,7 +175,10 @@ h1 {
   }
 }
 
-/* Responsive design */
+/*
+ * Responsive design
+ */
+
 @media only screen and (max-width: 768px) {
     .deck,
     .congratulations {
