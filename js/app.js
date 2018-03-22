@@ -6,6 +6,7 @@ const cards   = document.getElementsByClassName('card');
 const time    = document.getElementsByClassName('time')[0];
 const moves   = document.getElementsByClassName('moves')[0];
 const restart = document.getElementsByClassName('restart')[0];
+const stars   = document.getElementsByClassName('stars')[0].children;
 
 let timerStarted = false;
 let timer = null;
@@ -47,8 +48,14 @@ function startTimer() {
 }
 
 // Clear card state
-const resetCardState = function ( card ) {
+const resetCardState = function( card ) {
   card.classList.remove("show", "open", "match", "avoid-clicks");
+}
+
+const resetStarsState = function() {
+  Array.from( stars ).forEach( function( star ) {
+    star.classList.remove( "hide-star" );
+  } );
 }
 
 const markAsMatched = function( card ) {
@@ -65,6 +72,7 @@ const cardClick = function( event ) {
   target.classList.add("open", "show", "avoid-clicks");
   if( openCard ) {
     updateMovesCounter();
+    updateStars();
     deck.classList.add( "avoid-clicks" );
     setTimeout( function() {
       if( openCard.isEqualNode( target ) ) {
@@ -87,6 +95,16 @@ const updateMovesCounter = function() {
   moves.textContent = movesCounter;
 }
 
+const updateStars = function() {
+  if( movesCounter === 15 ) {
+    stars[2].classList.add( "hide-star" );
+  } else if ( movesCounter === 25 ) {
+    stars[1].classList.add( "hide-star" );
+  } else if ( movesCounter === 35 ) {
+    stars[0].classList.add( "hide-star" );
+  }
+}
+
 // Cards setup, state reset, events
 const setupCards = function() {
     for (const card of cards) {
@@ -98,6 +116,7 @@ const setupCards = function() {
 // Zero time, move counts, stars
 const setupGameState = function() {
   clearInterval( timer );
+  resetStarsState();
   movesCounter = 0;
   timerStarted = false;
   seconds = 0;
