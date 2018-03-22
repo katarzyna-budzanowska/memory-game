@@ -103,7 +103,7 @@ const cardClick = function(event) {
 }
 
 const checkIfWon = function() {
-  if (matched !== 8) {
+  if (matched !== 1) {
     return;
   }
   clearInterval(timer);
