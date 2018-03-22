@@ -14,10 +14,12 @@ If you don't have `git` installed you can get project files by downloading the f
 Open `index.html` file in your browser.
 
 ## How To Play
-Click on a cards to find 8 pairs of identical symbols. Each time you can flip only 2 cards. If the cards match, they will change color, but if they don't match, they will hide again. If all cards match then you will get congratulations with your scores.
+Click on a cards to find 8 pairs of identical symbols. Each time you can flip only 2 cards. If the cards match, they will change color, but if they don't match, they will hide again. If all cards match then you will get congratulations with your scores. If you want to start a new game, press reset button:
+- located in top-right corner of the screen
+- or in the congratulations window.
 
 ### Score
-Remember, your time is running and moves are counted! Try to score 3 stars and finish the game in less than 15 moves. Between 15 and 24 moves you'll get 2 stars and after move 25 you'll get 1 star.
+Remember, your time is running and moves are counted! Opening two cards count as one move. Try to score 3 stars and finish the game in less than 15 moves. Between 15 and 24 moves you'll get 2 stars and after move 25 you'll get 1 star.
 
 Try it out and have fun!
 
