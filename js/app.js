@@ -5,6 +5,7 @@ const deck    = document.getElementsByClassName('deck')[0];
 const congratulations = document.getElementsByClassName('congratulations')[0];
 const cards   = document.getElementsByClassName('card');
 const time    = document.getElementsByClassName('time')[0];
+const timeSummary = document.getElementsByClassName('time-summary')[0];
 const moves   = document.getElementsByClassName('moves')[0];
 const restart = document.getElementsByClassName('restart')[0];
 const stars   = document.getElementsByClassName('stars')[0].children;
@@ -39,14 +40,18 @@ function shuffle(array) {
     return array;
 }
 
+function getFormatedTime() {
+  let sec = seconds % 60;
+  let min = (seconds - sec) / 60;
+  return min + ":" + ( sec < 10 ? '0' + sec : sec );
+}
+
 //timer function
 function startTimer() {
     timerStarted = true;
     timer = setInterval( function() {
         seconds++;
-        let sec = seconds % 60;
-        let min = (seconds - sec) / 60;
-        time.textContent = min + ":" + ( sec < 10 ? '0' + sec : sec );
+        time.textContent = getFormatedTime();
     }, 1000);
 }
 
@@ -111,6 +116,7 @@ const checkIfWon = function() {
   if ( movesCounter >= 35 ) {
     summaryStars[0].classList.add( "hide-star" );
   }
+  timeSummary.textContent = getFormatedTime();
 }
 
 const updateMovesCounter = function() {
