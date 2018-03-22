@@ -4,7 +4,7 @@ This is a matching game project made by Katarzyna Budzanowska for Udacity.
 
 ## How To Start
 
-Go to https://github.com/katarzyna-budzanowska/memory-game and open index.html file in your browser.
+Go to https://github.com/katarzyna-budzanowska/memory-game, clone the repository and open index.html file in your browser.
 
 ## How To Play
 Click on a cards to find 8 pairs of identical symbols. Each time you can flip only 2 cards. If the cards match, they will change color, but if they don't match, they will hide again.

@@ -1,4 +1,4 @@
-
+// Handlers to UI elements
 const deck = document.getElementsByClassName('deck')[0];
 const congratulations = document.getElementsByClassName('congratulations')[0];
 const cards = document.getElementsByClassName('card');
@@ -10,6 +10,7 @@ const restart = document.getElementsByClassName('restart');
 const stars = document.getElementsByClassName('stars')[0].children;
 const summaryStars = document.getElementsByClassName('summary-stars')[0].children;
 
+// Game state
 let timerStarted = false;
 let timer = null;
 let movesCounter = 0;
@@ -18,7 +19,7 @@ let seconds = 0;
 let matched = 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+const shuffle = function(array) {
   var currentIndex = array.length,
     temporaryValue, randomIndex;
 
@@ -33,14 +34,15 @@ function shuffle(array) {
   return array;
 }
 
-function getFormatedTime() {
+// Create formated time string out of seconds counter
+const getFormatedTime = function() {
   let sec = seconds % 60;
   let min = (seconds - sec) / 60;
   return min + ":" + (sec < 10 ? '0' + sec : sec);
 }
 
 //timer function
-function startTimer() {
+const startTimer = function() {
   timerStarted = true;
   timer = setInterval(function() {
     seconds++;
@@ -53,12 +55,14 @@ const resetCardState = function(card) {
   card.classList.remove("show", "open", "match", "avoid-clicks");
 }
 
+// Reset stars state, 3 stars should be visible
 const resetStarsState = function() {
   Array.from(stars).forEach(function(star) {
     star.classList.remove("hide-star");
   });
 }
 
+// Mark single card as matched
 const markAsMatched = function(card) {
   card.classList.add('match');
 }
@@ -93,6 +97,7 @@ const cardClick = function(event) {
   }
 }
 
+// Check if all cards are matched and prepare congratulations if so.
 const checkIfWon = function() {
   if (matched !== 8) {
     return;
@@ -113,11 +118,13 @@ const checkIfWon = function() {
   movesSummary.textContent = movesCounter;
 }
 
+// Update moves counter and display new value
 const updateMovesCounter = function() {
   movesCounter += 1;
   moves.textContent = movesCounter;
 }
 
+// Update stars number in scorecard
 const updateStars = function() {
   if (movesCounter === 15) {
     stars[2].classList.add("hide-star");
@@ -163,6 +170,7 @@ const game = function() {
   setupCards();
 }
 
+// Put game in the initial state
 const reset = function() {
   for (const card of cards) {
     resetCardState(card);
@@ -171,6 +179,7 @@ const reset = function() {
   shuffleCards();
 }
 
+// Initial setup
 window.addEventListener('load', game);
 restart[0].addEventListener('click', reset);
 restart[1].addEventListener('click', reset);
