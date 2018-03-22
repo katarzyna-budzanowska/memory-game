@@ -2,17 +2,20 @@
  * Create a list that holds all of your cards
  */
 const deck    = document.getElementsByClassName('deck')[0];
+const congratulations = document.getElementsByClassName('congratulations')[0];
 const cards   = document.getElementsByClassName('card');
 const time    = document.getElementsByClassName('time')[0];
 const moves   = document.getElementsByClassName('moves')[0];
 const restart = document.getElementsByClassName('restart')[0];
 const stars   = document.getElementsByClassName('stars')[0].children;
+const summaryStars = document.getElementsByClassName('summary-stars')[0].children;
 
 let timerStarted = false;
 let timer = null;
 let movesCounter = 0;
 let openCard = null;
 let seconds = 0;
+let matched = 0;
 
 /*
  * Display the cards on the page
@@ -78,6 +81,8 @@ const cardClick = function( event ) {
       if( openCard.isEqualNode( target ) ) {
         markAsMatched( target );
         markAsMatched( openCard );
+        matched += 1;
+        checkIfWon();
       } else {
         resetCardState( target );
         resetCardState( openCard );
@@ -87,6 +92,24 @@ const cardClick = function( event ) {
     }, 1000 );
   } else {
     openCard = target;
+  }
+}
+
+const checkIfWon = function() {
+  if( matched !== 1 ) {
+    return;
+  }
+  clearInterval( timer );
+  deck.classList.add("hidden");
+  congratulations.classList.remove("hidden");
+  if( movesCounter >= 1 ) {
+    summaryStars[2].classList.add( "hide-star" );
+  }
+  if ( movesCounter >= 1 ) {
+    summaryStars[1].classList.add( "hide-star" );
+  }
+  if ( movesCounter >= 35 ) {
+    summaryStars[0].classList.add( "hide-star" );
   }
 }
 
@@ -127,8 +150,11 @@ const setupGameState = function() {
   movesCounter = 0;
   timerStarted = false;
   seconds = 0;
+  matched = 0;
   moves.textContent = 0;
   time.textContent = "00:00";
+  deck.classList.remove("hidden");
+  congratulations.classList.add("hidden");
 }
 
 // Main game function
@@ -138,6 +164,9 @@ const game = function () {
 }
 
 const reset = function () {
+  for (const card of cards) {
+      resetCardState( card );
+  }
   setupGameState();
   shuffleCards();
 }
