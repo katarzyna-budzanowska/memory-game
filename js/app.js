@@ -1,12 +1,14 @@
 /*
  * Create a list that holds all of your cards
  */
-const deck  = document.getElementsByClassName('deck')[0];
-const cards = Array.from( document.getElementsByClassName('card') );
-const timer = document.getElementsByClassName('time')[0];
-const moves = document.getElementsByClassName('moves')[0];
+const deck    = document.getElementsByClassName('deck')[0];
+const cards   = document.getElementsByClassName('card');
+const time    = document.getElementsByClassName('time')[0];
+const moves   = document.getElementsByClassName('moves')[0];
+const restart = document.getElementsByClassName('restart')[0];
 
 let timerStarted = false;
+let timer = null;
 let movesCounter = 0;
 let openCard = null;
 let seconds = 0;
@@ -36,11 +38,11 @@ function shuffle(array) {
 //timer function
 function startTimer() {
     timerStarted = true;
-    time = setInterval( function() {
+    timer = setInterval( function() {
         seconds++;
         let sec = seconds % 60;
         let min = (seconds - sec) / 60;
-        timer.textContent = min + ":" + ( sec < 10 ? '0' + sec : sec );
+        time.textContent = min + ":" + ( sec < 10 ? '0' + sec : sec );
     }, 1000);
 }
 
@@ -58,7 +60,7 @@ const cardClick = function( event ) {
   if( ! timerStarted ) {
     startTimer();
   }
-  
+
   const target = event.target;
   target.classList.add("open", "show", "avoid-clicks");
   if( openCard ) {
@@ -89,15 +91,18 @@ const updateMovesCounter = function() {
 const setupCards = function() {
     for (const card of cards) {
         resetCardState( card );
-        card.addEventListener("click", cardClick);
+        card.addEventListener('click', cardClick);
     }
 };
 
 // Zero time, move counts, stars
 const setupGameState = function() {
+  clearInterval( timer );
   movesCounter = 0;
   timerStarted = false;
   seconds = 0;
+  moves.textContent = 0;
+  time.textContent = "00:00";
 }
 
 // Main game function
@@ -107,6 +112,7 @@ const game = function () {
 }
 
 window.addEventListener('load', game);
+restart.addEventListener('click', game);
 
 /*
  * set up the event listener for a card. If a card is clicked:
