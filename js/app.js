@@ -8,7 +8,7 @@ const time = document.getElementsByClassName('time')[0];
 const timeSummary = document.getElementsByClassName('time-summary')[0];
 const moves = document.getElementsByClassName('moves')[0];
 const movesSummary = document.getElementsByClassName('moves-summary')[0];
-const restart = document.getElementsByClassName('restart')[0];
+const restart = document.getElementsByClassName('restart');
 const stars = document.getElementsByClassName('stars')[0].children;
 const summaryStars = document.getElementsByClassName('summary-stars')[0].children;
 
@@ -181,7 +181,8 @@ const reset = function() {
 }
 
 window.addEventListener('load', game);
-restart.addEventListener('click', reset);
+restart[0].addEventListener('click', reset);
+restart[1].addEventListener('click', reset);
 
 /*
  * set up the event listener for a card. If a card is clicked:

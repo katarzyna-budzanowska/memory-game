@@ -91,7 +91,6 @@ h1 {
 /*
  * Style for the congratulations;
  */
-
 .congratulations {
   width: 660px;
   min-height: 680px;
@@ -104,7 +103,7 @@ h1 {
   justify-content: center;
   align-items: center;
   margin: 0 0 3em;
-  font-size: 2em;
+  font-size: 1.7em;
 }
 
 .congratulations.hidden {
@@ -137,6 +136,7 @@ h1 {
   font-size: x-large;
 }
 
+.congratulations .restart,
 .score-panel .restart {
   float: right;
   cursor: pointer;
